@@ -33,4 +33,31 @@ class ControladorContacto extends Controller
         $results= DB::delete('delete from tabla_contactos where id=?', [$id]);
        return "eliminado";
     }
+
+    public function listaUsuarios()
+    {
+       // $results= DB::select('select * from tabla_contactos');
+        $results= collect(DB::table('tabla_contactos')
+        ->orderByRaw('nombreContacto')
+        ->get(['id','nombreContacto', 'numeroTelefono', 'area', 'actividad', 'empresa', 'descripcion']));
+        if(count($results) > 0){    
+            return $results;
+        }
+        else{
+            return response()->json([
+            'status' => 'Invalid'
+            ]);
+            // return Response::json([ "status" => "invalid"]);
+        }
+    }
+
+    /*
+    for($i=0; $i<count($results); $i++){
+                return response()->json([ "nombreContacto" => $results[$i]->nombreContacto, "numeroTelefono"=> $results[$i]->numeroTelefono, 
+                "area"=> $results[$i]->area,
+                "actividad"=> $results[$i]->actividad,
+                "empresa"=> $results[$i]->empresa,
+                "descripcion"=> $results[$i]->descripcion]);
+            }
+    */
 }

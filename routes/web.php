@@ -17,4 +17,5 @@ Route::get('crearUsuario/{nombre}/{correo}/{pwd}/{tipoUsuario}','ControlladorUsu
 Route::get('crearContacto/{nombreContacto}/{numeroTelefono}/{area}/{actividad}/{empresa}/{descripcion}','ControladorContacto@crearContacto')->middleware('cors');
 Route::get('modificarContacto/{id}/{nombreContacto}/{numeroTelefono}/{area}/{actividad}/{empresa}/{descripcion}','ControladorContacto@editarContactos')->middleware('cors');
 
+Route::get('listaUsuarios','ControladorContacto@listaUsuarios')->middleware('cors');
 
